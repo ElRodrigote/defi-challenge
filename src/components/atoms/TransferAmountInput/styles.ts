@@ -10,6 +10,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderLeftWidth: 6,
       padding: "4px !important", // override inline-style
     },
+
+    [theme.breakpoints.down("md")]: {
+      marginTop: `${theme.spacing(1)} !important`,
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      marginTop: `${theme.spacing(1)} !important`,
+    },
   },
 }));
 

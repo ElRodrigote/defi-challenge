@@ -10,13 +10,17 @@ const onboard = Onboard({
 });
 
 const connectWallet = async () => {
-  await onboard.walletSelect();
-  await onboard.walletCheck();
+  try {
+    await onboard.walletSelect();
+    await onboard.walletCheck();
+  } catch (error) {
+    console.log("Error trying to connect wallet: ", error);
+  }
 };
 
 const ConnectWalletButton = () => (
   <div>
-    <Button onClick={connectWallet} variant="contained">
+    <Button fullWidth onClick={connectWallet} size="large" variant="contained">
       Connect Wallet
     </Button>
   </div>
