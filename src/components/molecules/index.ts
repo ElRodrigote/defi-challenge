@@ -1,3 +1,4 @@
 import TokenAndBalance from "./TokenAndBalance";
+import TokenButtons from "./TokenButtons";
 
-export { TokenAndBalance };
+export { TokenAndBalance, TokenButtons };

@@ -1,11 +1,12 @@
 import {
   AddressInput,
   ConnectWalletButton,
+  InputCheckerAdornment,
   TransferAmountInput,
-  TransferButton,
+  TokenActionButton,
 } from "./atoms";
 
-import { TokenAndBalance } from "./molecules";
+import { TokenAndBalance, TokenButtons } from "./molecules";
 
 import { ERC20TransferBox } from "./organisms";
 
@@ -15,8 +16,10 @@ export {
   AddressInput,
   ConnectWalletButton,
   ERC20TransferBox,
+  InputCheckerAdornment,
   Landing,
+  TokenActionButton,
   TokenAndBalance,
+  TokenButtons,
   TransferAmountInput,
-  TransferButton,
 };
