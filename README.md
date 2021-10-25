@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# DeFi Wonderland Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome! :wave:
 
-## Available Scripts
+This is my approach to solve [DeFi Wonderland](https://defi.sucks/) Frontend challenge.
 
-In the project directory, you can run:
+Having zero experience developing web3 projects made this a huge challenge for me to wrap my head around. In my path I learned about alternative tools like [ethers.js](https://docs.ethers.io/v5/) :eyes: that would have made my work much easier. The good thing I didn't use it? Learning a lot about what's happening under the hood! :raised_hands:
 
-### `yarn start`
+## Some Tools
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Ok so, many things happening here. Some tools I've used for this project:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `React with Typescript` - To handle rendering and types in general.
+- `Material-UI` - Component bootstrapping, visual theme handling and layouting. Extra Points: I learned Vercel doesn't like default MUI extended theme by default.
+- `React Router` - To handle route changes (not really used in this app tho).
+- `BigNumber.js` - Used to convert data as most token balances may fall into big numbers due to their decimal places.
+- `Blocknative` - In particular I used Onboard and Notify, to handle Wallet connection and TX status notifications.
+- `Web3.js` - Using this library to interact with contracts and Ethereum blockchain.
+- `Vercel` - Here I deployed my project to go live!
 
-### `yarn test`
+And that's pretty much it regarding tooling in general.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## So... how does it work?
 
-### `yarn build`
+Very simple!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can click [this link right here](https://defi-challenge-7wgoqfobc-rodrigojali.vercel.app/) to watch the deployed version in Vercel.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+But if you would like to run it locally and take a look into the code, a few preconditions:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Have Metamask (or any Ethereum wallet) installed in your device
+- Create a wallet, and connect it to Rinkeby Testnet
+- Click [in this link](https://faucet.rinkeby.io/) so you can claim some FREE! tokens :exploding_head: from Rinkeby Faucet
+- Follow [these instructions](https://ethereum.stackexchange.com/a/84720) to claim a few $DAI and $USDC tokens from Compound Faucet
+- You're ready to go!
 
-### `yarn eject`
+After those preconditions are met, you're ready to follow these steps and run this project locally:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clone this repository in your local computer
+2. Run `yarn install` in your favorite terminal so you can get all the dependencies, and maybe go for a tea :tea: or maybe a mate :mate: because it takes a few minutes
+3. After installation is done, run `yarn start` and wait for the magic :sparkles: to happen
