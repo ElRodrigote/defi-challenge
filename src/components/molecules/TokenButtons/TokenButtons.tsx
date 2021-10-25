@@ -91,7 +91,7 @@ const TokenButtons = ({
   const baseSendTransactionConfig = {
     contract: tokenContract,
     addressFrom: addressFrom as string,
-    targetAddress: selectedToken.address,
+    targetAddress: targetAddress as string,
     amount: transferAmountInWei,
   };
   const baseTxConfig = {
@@ -128,6 +128,8 @@ const TokenButtons = ({
       notify,
       txConfig: txConfigTransfer,
     });
+
+  console.log("txConfigTransfer", txConfigTransfer);
 
   return (
     <Grid className={classes.root} container>
