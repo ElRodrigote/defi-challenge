@@ -1,4 +1,4 @@
-import palette from "./palette";
+import { colors, palette } from "./palette";
 import theme from "./theme";
 
-export { palette, theme };
+export { colors, palette, theme };

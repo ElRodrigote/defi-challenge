@@ -1,10 +1,11 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
+import { colors } from "theme";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     alignItems: "center",
-    backgroundColor: theme.palette.accent1,
+    backgroundColor: colors.purple,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

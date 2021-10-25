@@ -1,9 +1,11 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
+import { colors } from "theme";
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: theme.palette.grayScale?.dark,
+    backgroundColor: colors.gray[400],
     borderRadius: 24,
     display: "flex",
     flexDirection: "column",

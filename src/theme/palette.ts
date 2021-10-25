@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   gray: {
     100: "#EEEEEE",
     200: "#CCCCCC",
@@ -13,7 +13,7 @@ const colors = {
   purple: "#473F6B",
 };
 
-const palette = {
+export const palette = {
   accent1: colors.purple,
   accent2: colors.blue.light,
   grayScale: {
@@ -27,5 +27,3 @@ const palette = {
     main: colors.blue.main,
   },
 };
-
-export default palette;
