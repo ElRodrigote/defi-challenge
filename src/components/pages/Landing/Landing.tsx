@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Typography } from "@mui/material";
 
 import { ConnectWalletButton, ERC20TransferBox } from "components";
 
@@ -12,7 +13,7 @@ const Landing = () => {
 
   useEffect(() => {
     const setUserAccount = async () => {
-      const accounts = await provider.enable();
+      const accounts = Boolean(provider) ? await provider.enable() : "";
       const userAccount = accounts[0];
 
       setAccount(userAccount);
@@ -23,8 +24,13 @@ const Landing = () => {
 
   return (
     <div className={classes.root}>
-      {account ? <div>Connected!</div> : <ConnectWalletButton />}
-      {/* <ConnectWalletButton /> */}
+      {account ? (
+        <Typography className={classes.connectedText} variant="h5">
+          Wallet Connected!
+        </Typography>
+      ) : (
+        <ConnectWalletButton />
+      )}
       <ERC20TransferBox account={account} />
     </div>
   );

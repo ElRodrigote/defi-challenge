@@ -4,8 +4,8 @@ import { Grid } from "@mui/material";
 import {
   AddressInput,
   TokenAndBalance,
+  TokenButtons,
   TransferAmountInput,
-  TransferButton,
 } from "components";
 import { tokensRinkeby } from "utils";
 import { useBalance } from "hooks";
@@ -20,7 +20,7 @@ const ERC20TransferBox = ({ account }: ERC20TransferBoxProps) => {
   const classes = useStyles();
   const [selectedToken, setSelectedToken] = useState(tokensRinkeby[0]);
   const [targetAddress, setTargetAddress] = useState("");
-  const [transferAmount, setTransferAmount] = useState("0");
+  const [transferAmount, setTransferAmount] = useState("");
   const [balanceInWei, isBalanceLoading] = useBalance(account, selectedToken);
 
   const handleTokenChange = (tokenValue: number) =>
@@ -36,7 +36,7 @@ const ERC20TransferBox = ({ account }: ERC20TransferBoxProps) => {
     <div className={classes.root}>
       <Grid className={classes.inputContainer} container>
         <Grid className={classes.balanceAndAmount} container item>
-          <Grid item xs={6}>
+          <Grid item md={6} xs={12}>
             <TokenAndBalance
               account={account}
               balanceInWei={balanceInWei as string}
@@ -45,7 +45,7 @@ const ERC20TransferBox = ({ account }: ERC20TransferBoxProps) => {
               selectedToken={selectedToken}
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item md={5} xs={12}>
             <TransferAmountInput
               balanceInWei={balanceInWei as string}
               onChange={handleTransferAmountChange}
@@ -59,7 +59,7 @@ const ERC20TransferBox = ({ account }: ERC20TransferBoxProps) => {
           targetAddress={targetAddress}
         />
       </Grid>
-      <TransferButton
+      <TokenButtons
         addressFrom={account}
         balanceInWei={balanceInWei as string}
         selectedToken={selectedToken}

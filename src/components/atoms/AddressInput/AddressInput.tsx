@@ -1,9 +1,10 @@
 import React from "react";
 
 import { TextField } from "@mui/material";
+
+import { InputCheckerAdornment } from "components";
 import { validateAddress } from "utils";
 
-import AddressInputAdornment from "./AddressInputAdornment";
 import useStyles from "./styles";
 
 type AddressInputProps = {
@@ -28,9 +29,9 @@ const AddressInput = ({ targetAddress = "", onChange }: AddressInputProps) => {
       helperText={isNonEmptyInvalidInput ? "Invalid address" : undefined}
       InputProps={{
         startAdornment: (
-          <AddressInputAdornment
-            isEmptyAddress={!Boolean(targetAddress.length)}
-            isValidAddress={isValidAddress}
+          <InputCheckerAdornment
+            isEmpty={!Boolean(targetAddress.length)}
+            isValid={isValidAddress}
           />
         ),
       }}

@@ -2,10 +2,10 @@ import React from "react";
 
 import { TextField } from "@mui/material";
 
-import { parseAmount, validateTransferAmount } from "utils";
 import { IERC20Token } from "utils/interfaces";
+import { InputCheckerAdornment } from "components";
+import { parseAmount, validateTransferAmount } from "utils";
 
-import TransferAmountInputAdornment from "./TransferAmountInputAdornment";
 import useStyles from "./styles";
 
 type TransferAmountInputProps = {
@@ -27,9 +27,9 @@ const TransferAmountInput = ({
     selectedToken.decimals,
     "toDecimal"
   );
-  const isInvalidAmount = validateTransferAmount(balance, transferAmount);
+  const isValidAmount = validateTransferAmount(balance, transferAmount);
   const isNonEmptyInvalidInput =
-    Boolean(transferAmount.length) && !isInvalidAmount;
+    Boolean(transferAmount.length) && !isValidAmount;
 
   const handleTransferAmountChange = (event: any) =>
     onChange(event.target.value);
@@ -37,14 +37,14 @@ const TransferAmountInput = ({
   return (
     <TextField
       className={classes.root}
-      error={transferAmount ? !isInvalidAmount : undefined}
+      error={transferAmount ? !isValidAmount : undefined}
       fullWidth
       helperText={isNonEmptyInvalidInput ? "Invalid amount" : undefined}
       InputProps={{
         startAdornment: (
-          <TransferAmountInputAdornment
-            isEmptyAmount={!Boolean(transferAmount.length)}
-            isInvalidAmount={isInvalidAmount}
+          <InputCheckerAdornment
+            isEmpty={!Boolean(transferAmount.length)}
+            isValid={isValidAmount}
           />
         ),
       }}

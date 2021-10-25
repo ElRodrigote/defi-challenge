@@ -6,9 +6,11 @@ import { DAPP_ID } from "./constants";
 import {
   getCustomTokenContract,
   parseAmount,
+  sendTokenTransaction,
   validateAddress,
+  validateBigNumber,
   validateTransferAmount,
-} from "./helperFunctions";
+} from "./helperFunctions/";
 
 import { tokensRinkeby } from "./tokenLists";
 
@@ -18,7 +20,9 @@ export {
   DAPP_ID,
   getCustomTokenContract,
   parseAmount,
+  sendTokenTransaction,
   tokensRinkeby,
   validateAddress,
+  validateBigNumber,
   validateTransferAmount,
 };

@@ -8,6 +8,8 @@ import Select from "@mui/material/Select";
 import { parseAmount, tokensRinkeby } from "utils";
 import { IERC20Token } from "utils/interfaces";
 
+import { useMediaQuery, useTheme } from "@mui/material";
+
 import useStyles from "./styles";
 
 type TokenAndBalanceProps = {
@@ -26,6 +28,8 @@ const TokenAndBalance = ({
   selectedToken,
 }: TokenAndBalanceProps) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const isSmViewport = useMediaQuery(theme.breakpoints.down("sm"));
   const balance = parseAmount(
     balanceInWei as string,
     selectedToken.decimals,
@@ -35,6 +39,17 @@ const TokenAndBalance = ({
     account && !isBalanceLoading
       ? `Balance: ${balance} ${selectedToken.symbol}`
       : "Loading Balance...";
+
+  const getAddressText = () => {
+    const address = selectedToken.address;
+    if (!isSmViewport) return `Token Address: ${address}`;
+
+    const firstSixFromAddress = address.substring(0, 6);
+    const lastFourFromAddress = address.substr(-4);
+    const minifiedAddress = `${firstSixFromAddress}...${lastFourFromAddress}`;
+
+    return minifiedAddress;
+  };
 
   return (
     <FormControl className={classes.root}>
@@ -53,6 +68,7 @@ const TokenAndBalance = ({
         ))}
       </Select>
       <FormHelperText>{balanceText}</FormHelperText>
+      <FormHelperText>{getAddressText()}</FormHelperText>
     </FormControl>
   );
 };
