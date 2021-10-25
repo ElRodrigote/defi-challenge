@@ -24,7 +24,7 @@ And that's pretty much it regarding tooling in general.
 
 Very simple!
 
-You can click [this link right here](https://defi-challenge-7wgoqfobc-rodrigojali.vercel.app/) to watch the deployed version in Vercel.
+You can click [this link right here](https://defi-challenge.vercel.app/) to watch the deployed version in Vercel.
 
 But if you would like to run it locally and take a look into the code, a few preconditions:
 
