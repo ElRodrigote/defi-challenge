@@ -6,6 +6,18 @@ const DECIMAL_PLACES = 4;
 const WEI_PLACES = 0;
 const ROUNDING_MODE = BigNumber.ROUND_DOWN;
 
+/**
+ * We use this fn to parse numbers back and forth
+ * big numbers and decimal numbers.
+ * We define decimals up to 4 spaces, big number values
+ * always as integers, and we use these results to
+ * display the balance value in human readable way or
+ * to operate with token transfers.
+ * Once again, I choose `toWei` instead `toBigNumber`
+ * for simplicity sake account, sowe get a big number
+ * parsed into string.
+ * `BNO` stands for Big Number Object.
+ */
 const parseBigNumber = (
   BNAmount: any,
   BNOMultiplier: any,

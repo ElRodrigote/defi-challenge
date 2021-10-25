@@ -11,6 +11,11 @@ type sendTokenTransactionProps = {
   txConfig: txConfigProps;
 };
 
+/**
+ * This function handles transaction notifications
+ * on the frontend via popups, internally checking
+ * the TX status in the mempool.
+ */
 const sendTokenTransaction = async ({
   emitterLoading,
   notify,
@@ -24,6 +29,12 @@ const sendTokenTransaction = async ({
     txDetails,
   });
 
+  /**
+   * We use this `emitter` to listen on different tx events,
+   * so we can update the TX status and enable/disable the
+   * transactional buttons for `Approve` and `Transfer` tokens.
+   * This way we avoid multi-clicking the same button.
+   */
   emitter.on("txRequest", () => {
     emitterLoading(true);
   });

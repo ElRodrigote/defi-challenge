@@ -1,5 +1,10 @@
 import { ABI_ERC20_DAI, ABI_ERC20_USDC } from "utils";
 
+/**
+ * We could use this file to generate different
+ * token list information for each testnet or even
+ * mainnet we want to support in our application.
+ */
 export const tokensRinkeby = [
   {
     id: 1,

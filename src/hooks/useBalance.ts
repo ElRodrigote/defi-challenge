@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { getCustomTokenContract } from "utils";
 import { IERC20Token } from "utils/interfaces";
 
+/**
+ * For any kind of error when trying to fetch our wallet
+ * token balance, we return a "0" balance.
+ */
 const ERROR_RETURN_VALUE = "0";
 
 const useBalance = (account: string = "", selectedToken: IERC20Token) => {
@@ -18,11 +22,19 @@ const useBalance = (account: string = "", selectedToken: IERC20Token) => {
         }
 
         try {
+          /**
+           * First we get a contract instance for the
+           * selected token to operate
+           */
           const ERC20contract = getCustomTokenContract(
             selectedToken.abi,
             selectedToken.address
           );
 
+          /**
+           * And call the ERC20 `balanceOf()` method on our
+           * account, sowe get a big number parsed into string
+           */
           ERC20contract?.methods
             .balanceOf(account)
             .call()
@@ -46,6 +58,10 @@ const useBalance = (account: string = "", selectedToken: IERC20Token) => {
       });
     };
 
+    /**
+     * Then we call our `getBalance()` and handle the loading
+     * states while we wait forthe promise to resolve.
+     */
     const fetchBalance = async () => {
       setIsBalanceLoading(true);
       const balanceInWei = await getBalance();
@@ -57,6 +73,12 @@ const useBalance = (account: string = "", selectedToken: IERC20Token) => {
     fetchBalance();
   }, [account, selectedToken]);
 
+  /**
+   * The balance is not really in wei, but I choose this
+   * naming over `balanceInBigNumber` for simplicity sake.
+   * We return that big number balance parsed to string,
+   * and the loading status for that call.
+   */
   return [balanceInWei, isBalanceLoading];
 };
 
