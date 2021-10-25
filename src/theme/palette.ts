@@ -14,15 +14,6 @@ export const colors = {
 };
 
 export const palette = {
-  accent1: colors.purple,
-  accent2: colors.blue.light,
-  grayScale: {
-    darkest: colors.gray[500],
-    dark: colors.gray[400],
-    light: colors.gray[200],
-    lightest: colors.gray[100],
-    main: colors.gray[300],
-  },
   primary: {
     main: colors.blue.main,
   },
