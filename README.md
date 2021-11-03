@@ -10,6 +10,7 @@ Ok so, many things happening here. Some tools I've used for this project:
 
 - `React with Typescript` - Rendering, but with that sweet type-safe spice
 - `Material UI` - Component bootstrapping, visual theme handling and layouting.
+- `react-redux` - Handling app global state management.
 - `react-router` - To handle route changes (not really used in this app tho).
 - `BigNumber.js` - Used to handle data as most token balances may exceed the primitive number type due to their decimal places.
 - `Blocknative` - In particular I used Onboard and Notify, to handle Wallet connection and TX status notifications.
