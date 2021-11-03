@@ -12,7 +12,7 @@ import {
   validateTransferAmount,
 } from "./helperFunctions/";
 
-import { tokensRinkeby } from "./tokenLists";
+import rinkebyTokenList from "./rinkebyTokenList";
 
 export {
   ABI_ERC20_DAI,
@@ -20,8 +20,8 @@ export {
   DAPP_ID,
   getCustomTokenContract,
   parseAmount,
+  rinkebyTokenList,
   sendTokenTransaction,
-  tokensRinkeby,
   validateAddress,
   validateBigNumber,
   validateTransferAmount,
