@@ -1,25 +1,26 @@
 import React from "react";
-
 import { TextField } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
 import { InputCheckerAdornment } from "components";
+import { RootState } from "redux/types";
+import { setTargetWallet } from "redux/reducers/wallets";
 import { validateAddress } from "utils";
 
 import useStyles from "./styles";
 
-type AddressInputProps = {
-  targetAddress?: string;
-  onChange: (value: string) => void;
-};
-
-const AddressInput = ({ targetAddress = "", onChange }: AddressInputProps) => {
+const AddressInput = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const targetAddress = useSelector(
+    ({ wallets }: RootState) => wallets.targetWallet
+  );
 
   const isValidAddress = validateAddress(targetAddress);
-  const isNonEmptyInvalidInput =
-    Boolean(targetAddress.length) && !isValidAddress;
+  const isNonEmptyInvalidInput = targetAddress.length && !isValidAddress;
 
-  const handleAddressChange = (event: any) => onChange(event.target.value);
+  const handleAddressChange = (event: any) =>
+    dispatch(setTargetWallet(event.target.value));
 
   return (
     <TextField

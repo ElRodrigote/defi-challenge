@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import Notify from "bnc-notify";
 import Web3 from "web3";
+import { useSelector } from "react-redux";
 
 import {
   DAPP_ID,
@@ -9,7 +10,7 @@ import {
   parseAmount,
   sendTokenTransaction,
 } from "utils";
-import { IERC20Token } from "utils/interfaces";
+import { RootState } from "redux/types";
 import { TokenActionButton } from "components";
 
 import useStyles from "./styles";
@@ -20,13 +21,6 @@ type sendTransactionProps = {
   targetAddress: string;
   amount: string;
   method: "approve" | "transfer";
-};
-type TokenButtonsProps = {
-  addressFrom?: string;
-  balanceInWei?: string;
-  selectedToken: IERC20Token;
-  targetAddress?: string;
-  transferAmount: string;
 };
 
 const notify = Notify({
@@ -58,15 +52,25 @@ const sendTransaction =
         .catch(reject)
     );
 
-const TokenButtons = ({
-  addressFrom,
-  balanceInWei,
-  selectedToken,
-  targetAddress,
-  transferAmount,
-}: TokenButtonsProps) => {
+const TokenButtons = () => {
   const classes = useStyles();
+  const balanceInWei = useSelector(
+    ({ balance }: RootState) => balance.selectedTokenBalance
+  );
+  const selectedToken = useSelector(
+    ({ tokens }: RootState) => tokens.selectedToken
+  );
+  const spenderWallet = useSelector(
+    ({ wallets }: RootState) => wallets.spenderWallet
+  );
+  const targetWallet = useSelector(
+    ({ wallets }: RootState) => wallets.targetWallet
+  );
+  const transferAmount = useSelector(
+    ({ balance }: RootState) => balance.amountToTransfer
+  );
   const [isTransactionLoading, setIsTransactionLoading] = useState(false);
+
   const tokenContract = getCustomTokenContract(
     selectedToken.abi,
     selectedToken.address
@@ -79,19 +83,19 @@ const TokenButtons = ({
   );
 
   const txDetailsApprove = {
-    from: addressFrom,
+    from: spenderWallet,
     value: transferAmountInWei,
   };
   const txDetailsTransfer = {
-    from: addressFrom,
-    to: targetAddress,
+    from: spenderWallet,
+    to: targetWallet,
     value: transferAmountInWei,
   };
 
   const baseSendTransactionConfig = {
     contract: tokenContract,
-    addressFrom: addressFrom as string,
-    targetAddress: targetAddress as string,
+    addressFrom: spenderWallet,
+    targetAddress: targetWallet,
     amount: transferAmountInWei,
   };
   const baseTxConfig = {
@@ -128,8 +132,6 @@ const TokenButtons = ({
       notify,
       txConfig: txConfigTransfer,
     });
-
-  console.log("txConfigTransfer", txConfigTransfer);
 
   return (
     <Grid className={classes.root} container>

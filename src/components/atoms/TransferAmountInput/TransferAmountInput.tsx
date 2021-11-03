@@ -1,27 +1,27 @@
 import React from "react";
-
 import { TextField } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
-import { IERC20Token } from "utils/interfaces";
 import { InputCheckerAdornment } from "components";
 import { parseAmount, validateTransferAmount } from "utils";
+import { RootState } from "redux/types";
+import { setAmountToTransfer } from "redux/reducers/balance";
 
 import useStyles from "./styles";
 
-type TransferAmountInputProps = {
-  balanceInWei?: string;
-  onChange: (value: string) => void;
-  selectedToken: IERC20Token;
-  transferAmount: string;
-};
-
-const TransferAmountInput = ({
-  balanceInWei,
-  onChange,
-  selectedToken,
-  transferAmount,
-}: TransferAmountInputProps) => {
+const TransferAmountInput = () => {
   const classes = useStyles();
+  const balanceInWei = useSelector(
+    ({ balance }: RootState) => balance.selectedTokenBalance
+  );
+  const dispatch = useDispatch();
+  const selectedToken = useSelector(
+    ({ tokens }: RootState) => tokens.selectedToken
+  );
+  const transferAmount = useSelector(
+    ({ balance }: RootState) => balance.amountToTransfer
+  );
+
   const balance = parseAmount(
     balanceInWei as string,
     selectedToken.decimals,
@@ -31,8 +31,8 @@ const TransferAmountInput = ({
   const isNonEmptyInvalidInput =
     Boolean(transferAmount.length) && !isValidAmount;
 
-  const handleTransferAmountChange = (event: any) =>
-    onChange(event.target.value);
+  const handleTransferAmountChange = (amount: string) =>
+    dispatch(setAmountToTransfer(amount));
 
   return (
     <TextField
@@ -49,7 +49,9 @@ const TransferAmountInput = ({
         ),
       }}
       label="Amount to Transfer"
-      onChange={handleTransferAmountChange}
+      onChange={(event: any) =>
+        handleTransferAmountChange(event.target.value as string)
+      }
       value={transferAmount}
     />
   );

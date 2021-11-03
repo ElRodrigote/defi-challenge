@@ -6,10 +6,10 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "@mui/material/styles";
 import thunk from "redux-thunk";
 
-import reducer from "redux/reducers";
 import { Landing } from "components";
-import { theme } from "theme";
+import reducer from "redux/reducers";
 import { RootState } from "redux/types";
+import { theme } from "theme";
 
 const store: Store<RootState> = createStore(reducer, applyMiddleware(thunk));
 

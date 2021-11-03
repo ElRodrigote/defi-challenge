@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
-
 import { colors } from "theme";
+
 const useStyles = makeStyles(() => ({
   root: {
     alignItems: "center",
